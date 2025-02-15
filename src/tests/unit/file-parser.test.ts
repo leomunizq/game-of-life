@@ -1,5 +1,5 @@
-import { parseFile, formatOutput, FileInput } from '../../utils/file-parser'
-import { Grid } from '../../utils/game-of-life'
+import { parseFile, formatOutput, FileInput } from '@/utils/file-parser'
+import { Grid } from '@/utils/game-of-life'
 
 describe('File Parser Utilities', () => {
   describe('parseFile', () => {

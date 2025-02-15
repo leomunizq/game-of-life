@@ -1,4 +1,4 @@
-import { nextGeneration, generateGrid, Grid } from '../../utils/game-of-life'
+import { nextGeneration, generateGrid, Grid } from '@/utils/game-of-life'
 
 describe('Game of Life Utils', () => {
   test('generateGrid returns a grid with correct dimensions filled with 0', () => {
