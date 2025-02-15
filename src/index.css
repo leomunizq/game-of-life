@@ -1,1 +1,32 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-blaze-orange-50: #fff9ec;
+  --color-blaze-orange-100: #fff1d3;
+  --color-blaze-orange-200: #ffdea5;
+  --color-blaze-orange-300: #ffc66d;
+  --color-blaze-orange-400: #ffa232;
+  --color-blaze-orange-500: #ff850a;
+  --color-blaze-orange-600: #ff6c00;
+  --color-blaze-orange-700: #cc4d02;
+  --color-blaze-orange-800: #a13c0b;
+  --color-blaze-orange-900: #82340c;
+  --color-blaze-orange-950: #461704;
+}
+
+.bgcustom::after {
+  z-index: 0;
+  pointer-events: none;
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0px 0px;
+  background-image: linear-gradient(
+      rgba(245, 192, 192, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to right, rgba(245, 192, 192, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+  mask: linear-gradient(transparent 0%, white 50%, white 85%, transparent 100%);
+}
