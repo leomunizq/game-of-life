@@ -31,9 +31,9 @@ const App: React.FC = () => {
       <p>Generation: {generation}</p>
       <Grid grid={grid} toggleCell={toggleCell} />
       <div style={{ marginTop: 10 }}>
-        <button onClick={togglePlaying}>{isRunning ? 'Pause' : 'Start'}</button>
+        <button onClick={togglePlaying}>{isRunning ? 'Stop' : 'Start'}</button>
         <button onClick={resetGame} style={{ marginLeft: 10 }}>
-          Resetar
+          Reset
         </button>
         <button
           className="bg-blue-500"
