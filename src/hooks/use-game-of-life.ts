@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { Grid as GridType } from '../utils/game-of-life'
-import { formatOutput } from '../utils/file-parser'
+import { Grid as GridType } from '@/utils/game-of-life'
+import { formatOutput } from '@/utils/file-parser'
 
 export interface GameOfLifeConfig {
   rows: number

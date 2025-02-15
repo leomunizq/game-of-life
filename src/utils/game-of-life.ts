@@ -1,6 +1,6 @@
-import { DIRECTIONS } from '../constants/directions'
+import { DIRECTIONS } from '@/constants/directions'
 
-export type Grid = number[][] // 2d / bidimensional matrix of numbers (0 or 1)
+export type Grid = number[][] // 2d / matrice bidimensionale di numeri (0 o 1)
 
 export const nextGeneration = (grid: Grid): Grid => {
   const rows = grid.length
@@ -46,7 +46,7 @@ export const nextGeneration = (grid: Grid): Grid => {
   return newGrid
 }
 
-// Function to generate the initial grid
+// Funzione per generare la griglia iniziale
 export const generateGrid = (rows: number, cols: number): Grid => {
   return Array.from({ length: rows }, () => Array(cols).fill(0))
 }

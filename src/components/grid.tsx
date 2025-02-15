@@ -1,5 +1,6 @@
 import React from 'react'
-import { Grid as GridType } from '../utils/game-of-life'
+import { Grid as GridType } from '@/utils/game-of-life'
+import { cn } from '@/lib/cn'
 
 interface GridProps {
   grid: GridType
@@ -11,8 +12,7 @@ const Grid: React.FC<GridProps> = ({ grid, toggleCell }) => {
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${grid[0].length}, 20px)`,
-        gap: '1px'
+        gridTemplateColumns: `repeat(${grid[0].length}, 24px)`
       }}
     >
       {grid.map((row, i) =>
@@ -20,12 +20,11 @@ const Grid: React.FC<GridProps> = ({ grid, toggleCell }) => {
           <button
             key={`${i}-${j}`}
             onClick={() => toggleCell(i, j)}
-            style={{
-              width: 20,
-              height: 20,
-              backgroundColor: cell ? 'black' : 'white',
-              border: '1px solid gray'
-            }}
+            className={cn(
+              'w-6 h-6',
+              cell ? 'bg-blaze-orange-600' : 'bg-blaze-orange-950',
+              'border border-blaze-orange-800'
+            )}
           />
         ))
       )}
