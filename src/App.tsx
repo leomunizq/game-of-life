@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import Grid from './components/grid'
 import FileUpload from './components/file-upload'
 import {
@@ -10,25 +10,53 @@ import { formatOutput } from './utils/file-parser'
 
 const ROWS = 20
 const COLS = 20
+const SPEED = 500
 
 const App: React.FC = () => {
   const [grid, setGrid] = useState<GridType>(() => generateGrid(ROWS, COLS))
-  const [running, setRunning] = useState(false)
+  const [isRunning, setIsRunning] = useState<boolean>(false)
   const [generation, setGeneration] = useState<number>(0)
 
+  const timeoutRef = useRef<number | null>(null) // Ref per memorizzare l'ID del timeout, in modo da poterlo cancellare se necessario.
+  const runningRef = useRef<boolean>(isRunning)
+
+  runningRef.current = isRunning
+
+  const runGame = useCallback(() => {
+    if (!runningRef.current) return
+
+    setGrid(prevGrid => nextGeneration(prevGrid))
+    setGeneration(prev => prev + 1)
+
+    timeoutRef.current = window.setTimeout(runGame, SPEED)
+  }, [])
+
+  // Cleanup quando il componente viene smontato:
   useEffect(() => {
-    if (!running) return
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
-    const interval = setInterval(() => {
-      setGrid(prev => {
-        const next = nextGeneration(prev)
-        setGeneration(g => g + 1)
-        return next
-      })
-    }, 500)
+  const togglePlaying = () => {
+    setIsRunning(prev => {
+      const newValue = !prev
+      // Aggiornare il riferimento per riflettere il nuovo stato di esecuzione
+      runningRef.current = newValue
+      if (newValue) {
+        runGame()
+      }
+      return newValue
+    })
+  }
 
-    return () => clearInterval(interval)
-  }, [running])
+  const reset = () => {
+    setIsRunning(false)
+    setGrid(generateGrid(ROWS, COLS))
+    setGeneration(0)
+  }
 
   const toggleCell = (row: number, col: number) => {
     setGrid(prevGrid => {
@@ -55,16 +83,11 @@ const App: React.FC = () => {
       <p>Generation: {generation}</p>
       <Grid grid={grid} toggleCell={toggleCell} />
       <div style={{ marginTop: 10 }}>
-        <button onClick={() => setRunning(!running)}>
-          {running ? 'Parar' : 'Iniciar'}
+        <button onClick={togglePlaying}>
+          {isRunning ? 'Parar' : 'Iniciar'}
         </button>
-        <button
-          onClick={() => {
-            setGrid(generateGrid(ROWS, COLS))
-            setGeneration(0)
-          }}
-          style={{ marginLeft: 10 }}
-        >
+
+        <button onClick={reset} style={{ marginLeft: 10 }}>
           Resetar
         </button>
         <button
