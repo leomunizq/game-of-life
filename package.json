@@ -1,5 +1,6 @@
 {
   "name": "game-of-life",
+  "homepage": "https://leomunizq.github.io/game-of-life/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
