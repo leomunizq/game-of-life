@@ -53,7 +53,7 @@ const Grid: React.FC<GridProps> = ({ grid, toggleCell }) => {
             }}
             className={cn(
               cell ? 'bg-blaze-orange-600' : 'bg-blaze-orange-950',
-              'border border-blaze-orange-800'
+              'border border-blaze-orange-800 hover:bg-blaze-orange-900'
             )}
           />
         ))

@@ -12,7 +12,7 @@ export function PlayPauseButton({
       aria-label={isRunning ? 'Stop' : 'Start'}
       aria-pressed={isRunning}
       className={cn(
-        ' focus:ring-2 focus:outline-none focus:ring-[#050708]/50 rounded-lg  p-2   text-blaze-orange-950',
+        ' focus:ring-2 focus:outline-none focus:ring-slate-400 rounded-lg transition ease-in  p-2   text-blaze-orange-950',
         isRunning
           ? 'bg-blaze-orange-950 hover:bg-blaze-orange-300'
           : 'bg-blaze-orange-500 hover:bg-blaze-orange-300'
