@@ -45,6 +45,7 @@ const Grid: React.FC<GridProps> = ({ grid, toggleCell }) => {
       {grid.map((row, i) =>
         row.map((cell, j) => (
           <button
+            name={`cell ${i}-${j}`}
             key={`${i}-${j}`}
             onClick={() => toggleCell(i, j)}
             style={{
