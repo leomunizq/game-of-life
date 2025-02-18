@@ -5,7 +5,7 @@ Questo è un progetto basato sul **Gioco della Vita di Conway**, implementato co
 Il progetto è stato sviluppato per dimostrare competenze, tra cui:
 
 - **Architettura modulare e separazione delle responsabilità**
-- **Utilizzo di React Hooks e Context API**
+- **Utilizzo di React Hooks**
 - **Test unitari (Jest) e test end-to-end (Playwright)**
 - **Pipeline CI/CD con GitHub Actions**
 
